@@ -10,7 +10,7 @@ group = "ai.rever.boss.plugin.dynamic"
 // 0.1.0: first standalone JUnit XML viewer for BOSS. Parses test reports, renders the result
 // as a tree of suites/classes/methods with status icons, error messages, and an MCP surface
 // for agent-driven test triage.
-version = "0.1.0"
+version = "0.1.1"
 
 java {
     toolchain {

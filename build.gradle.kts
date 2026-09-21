@@ -57,6 +57,11 @@ dependencies {
     // Decompose for ComponentContext
     implementation("com.arkivanov.decompose:decompose:3.3.0")
     implementation("com.arkivanov.essenty:lifecycle:2.5.0")
+
+    testImplementation(files("$bossPluginApiPath/build/libs/boss-plugin-api-1.0.93.jar"))
+    testImplementation("org.jetbrains.kotlin:kotlin-test:2.3.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation("org.slf4j:slf4j-simple:2.0.13")
 }
 
 

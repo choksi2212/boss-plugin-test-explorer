@@ -86,6 +86,21 @@ See [AGENTS.md](AGENTS.md) for architecture and conventions.
 | 9.4.2+ | 1.0.93+ | yes |
 | < 9.4.2 | any | no (PluginContext.fileSystemDataProvider missing) |
 
+## Demo
+
+Walkthrough used in the hackathon submission:
+
+1. Build and install (`./gradlew buildPluginJar`, drop the jar into `~/.boss/plugins/dev/<pluginId>/v<ms>/`).
+2. Open the panel in the left sidebar's bottom slot and pick a directory containing JUnit XML output (Gradle default is `<module>/build/test-results/test/`).
+3. The panel renders a tree: `<testsuite>` rows expand to one row per `<testcase>`, with green/red/grey status icons and per-row timings. The header shows totals (tests, passed, failed, skipped, time).
+4. Click a FAILED row to expand the throwable type, message, and full stack trace.
+5. Toggle **Watch: On** to re-parse every 2 seconds - the same watcher is shared with the MCP tools, so `test_explorer_watch_start(dirPath)` and the panel toggle are equivalent.
+6. From an in-terminal agent, run `mcp__boss__test_explorer_summarize({"dirPath":"..."})` and get back the same counts + the list of failures the panel shows.
+
+The parser defends against XML-bomb variants at three layers: DTD and external-entity resolution disabled (`XMLInputFactory.SUPPORT_DTD = false`), `MAX_ELEMENT_DEPTH = 256`, and per-file / per-pass byte caps (`16 MiB` / `64 MiB`).
+
+Full walkthrough with sample input/output: see [DEMO.md](DEMO.md) at the top of the boss-plugins meta-repo.
+
 ## License
 
 MIT.
